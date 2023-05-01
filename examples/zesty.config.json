@@ -1,0 +1,13 @@
+{
+    "instance_zuid": "8-xyzxyz-7xyzxy",
+    "stage": "https://xyz-dev.webengine.zesty.io",
+    "production": "https://www.myproductiondomain.com",
+    "stage_password": "",
+    "auth": "",
+    "src_dir": "",
+    "options": {
+      "skip_config_overwrite": false,
+      "model_ignore_list": ["6-xyz"]
+    },
+    "runinstaller": true
+  }
