@@ -1,4 +1,4 @@
-export async function fetchPage(url, getNavigation = true) {
+export default async function(url, getNavigation = true) {
  
   // back out if the zesty integration is not setup is not setup 
   if(process.env.zesty.production == "" && process.env.zesty.stage == ""){
