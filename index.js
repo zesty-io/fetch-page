@@ -1,7 +1,7 @@
-export default async function(url, getNavigation = true) {
+export async function fetchPage(url, getNavigation = true) {
  
   // back out if the zesty integration is not setup is not setup 
-  if(process.env.zesty.production == "" && process.env.zesty.stage == ""){
+  if(process.env?.zesty?.production && process.env.zesty.production == "" && process.env.zesty.stage == ""){
     return  {
       title: 'Connection to Zesty.io Instance is Missing',
       description: '<p>Run <code>npm install</code> to start zesty integration</p>',
