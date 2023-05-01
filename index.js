@@ -1,7 +1,12 @@
-export async function fetchPage(url, getNavigation = true) {
+export async function fetchPage(url, getNavigation = true, config = false) {
  
+  // config override, commonly used outside of next.js configuration  
+  if(config == false){
+    config == process.env.zesty
+  }
+  
   // back out if the zesty integration is not setup is not setup 
-  if(process.env?.zesty?.production && process.env.zesty.production == "" && process.env.zesty.stage == ""){
+  if(config?.production && config.production == "" && config.stage == ""){
     return  {
       title: 'Connection to Zesty.io Instance is Missing',
       description: '<p>Run <code>npm install</code> to start zesty integration</p>',
@@ -48,8 +53,8 @@ export async function fetchPage(url, getNavigation = true) {
       ? true
       : false;
   let zestyURL = productionMode
-    ? process.env.zesty.production
-    : process.env.zesty.stage;
+    ? config.production
+    : config.stage;
   zestyURL = zestyURL.replace(/\/$/, '');
 
   let zestyJSONURL =
@@ -57,7 +62,7 @@ export async function fetchPage(url, getNavigation = true) {
     '/' +
     url +
     '?toJSON&zpw=' +
-    process.env.zesty.stage_password +
+    config.stage_password +
     '&' +
     queryString;
 
@@ -73,7 +78,7 @@ export async function fetchPage(url, getNavigation = true) {
 
   // setup zesty values
   data.zestyProductionMode = productionMode;
-  data.zestyInstanceZUID = process.env.zesty.instance_zuid;
+  data.zestyInstanceZUID = config.instance_zuid;
   data.zestyBaseURL = zestyURL;
   data.zestyNavigationTree = [];
 
@@ -89,7 +94,7 @@ export async function fetchPage(url, getNavigation = true) {
 // buildJSONTreeFromNavigation: Navigation fetch to zesty headless endpoint that return routes
 async function buildJSONTreeFromNavigation(zestyURL) {
   // access the headless url map
- let navJSON = zestyURL+'/-/headless/routing.json?zpw=' + process.env.zesty.stage_password;
+ let navJSON = zestyURL+'/-/headless/routing.json?zpw=' + config.stage_password;
  try {
    const routes = await fetch(navJSON);
    let routeData = await routes.json();
