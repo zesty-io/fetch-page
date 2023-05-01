@@ -1,6 +1,6 @@
 {
   "name": "@zesty-io/fetch-page",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fetches relative URL based JSON from a Zesty.io content instance",
   "main": "index.js",
   "scripts": {
