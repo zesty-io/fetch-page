@@ -47,7 +47,7 @@ import './App.css';
 import React from 'react';
 import { fetchPage } from '@zesty-io/fetch-page';
 
-async function App() {
+function App() {
   const [content, setContent] = React.useState({ title: 'missing'});
 
   React.useEffect(() => {
